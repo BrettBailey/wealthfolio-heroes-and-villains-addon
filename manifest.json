@@ -1,0 +1,58 @@
+{
+  "id": "heroes-villains",
+  "name": "Heroes & Villains",
+  "version": "0.3.0",
+  "description": "Which holdings drove your portfolio's move? Ranks your biggest gains and losses in cash over a selectable period, with time-weighted and money-weighted returns alongside. Every figure is a total return — dividends included.",
+  "main": "dist/addon.js",
+  "minWealthfolioVersion": "3.6.2",
+  "sdkVersion": "3.6.2",
+  "contributes": {
+    "routes": [{ "id": "heroes-villains" }],
+    "links": {
+      "sidebar": [
+        {
+          "route": "heroes-villains",
+          "label": "Heroes & Villains",
+          "icon": "lightning"
+        }
+      ]
+    }
+  },
+  "permissions": [
+    {
+      "category": "accounts",
+      "functions": [{ "name": "getAll", "isDeclared": true, "isDetected": false }],
+      "purpose": "List accounts so the user can filter which ones are included in the ranking."
+    },
+    {
+      "category": "portfolio",
+      "functions": [{ "name": "getHoldings", "isDeclared": true, "isDetected": false }],
+      "purpose": "Read current holdings per account to build the heroes/villains ranking."
+    },
+    {
+      "category": "activities",
+      "functions": [{ "name": "getAll", "isDeclared": true, "isDetected": false }],
+      "purpose": "Read buy/sell/dividend history per account to compute real period-scoped cash and percentage returns."
+    },
+    {
+      "category": "quotes",
+      "functions": [{ "name": "getHistory", "isDeclared": true, "isDetected": false }],
+      "purpose": "Read historical price quotes per holding to compute period-scoped returns for the selected date range."
+    },
+    {
+      "category": "assets",
+      "functions": [{ "name": "getProfile", "isDeclared": true, "isDetected": false }],
+      "purpose": "Read each holding's quote currency, so prices quoted in pence (GBp) are converted to pounds rather than being read as 100x their true value."
+    },
+    {
+      "category": "settings",
+      "functions": [{ "name": "get", "isDeclared": true, "isDetected": false }],
+      "purpose": "Read the portfolio's base currency to determine which holdings can get real period-scoped figures."
+    },
+    {
+      "category": "currency",
+      "functions": [{ "name": "getAll", "isDeclared": true, "isDetected": false }],
+      "purpose": "Find the exchange-rate pair for each foreign currency held, so foreign holdings can be converted to the base currency at each day's historical rate."
+    }
+  ]
+}
